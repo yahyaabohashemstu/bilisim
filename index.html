@@ -204,6 +204,15 @@
         .option-btn.correct-answer { border-color: var(--success); background: #d1fae5; color: #065f46; }
         .option-btn.wrong-answer { border-color: var(--danger); background: #fee2e2; color: #991b1b; }
 
+        .check-single-btn {
+            display: block; width: 100%; margin-top: 12px; padding: 11px;
+            border: 2px solid var(--primary); border-radius: 10px;
+            background: #eff6ff; color: var(--primary); font-weight: 700;
+            font-size: 0.9em; cursor: pointer; transition: all 0.15s; font-family: inherit;
+        }
+        .check-single-btn:hover:not(:disabled) { background: var(--primary); color: white; }
+        .check-single-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
         .feedback-msg { margin-top: 10px; padding: 10px 16px; border-radius: 8px; font-weight: 500; display: none; font-size: 0.9em; }
         .feedback-msg.show { display: block; }
         .feedback-msg.correct { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
@@ -810,7 +819,7 @@
             <div class="section-title-tr">Sınav Hazırlık Testi</div>
             <div class="section-title-ar">اختبار تحضيري للامتحان</div>
         </div>
-        <span class="section-badge">10 Soru</span>
+        <span class="section-badge">25 Soru</span>
     </div>
 
     <div class="quiz-container">
@@ -818,198 +827,14 @@
             <span style="font-size: 1.5em;">📝</span>
             <h3>Kendini Test Et! / اختبر نفسك!</h3>
         </div>
-        <div class="quiz-body" id="quizBody">
-
-            <!-- Q1 -->
-            <div class="quiz-question" id="q1">
-                <div class="q-text">
-                    <span class="q-num">1</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">"Kaç kilosunuz?" sorusuna verilen "61" cevabı hangi veri türüdür?</span>
-                        <span class="q-ar">ما نوع البيانات للإجابة "61" على سؤال "كم وزنك؟"</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(1, this, 'A')">A) Karakter</button>
-                    <button class="option-btn" onclick="selectAnswer(1, this, 'B')">B) Sayısal</button>
-                    <button class="option-btn" onclick="selectAnswer(1, this, 'C')">C) Mantıksal</button>
-                    <button class="option-btn" onclick="selectAnswer(1, this, 'D')">D) Özel</button>
-                </div>
-                <div class="feedback-msg" id="fb1"></div>
-            </div>
-
-            <!-- Q2 -->
-            <div class="quiz-question" id="q2">
-                <div class="q-text">
-                    <span class="q-num">2</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">"29 Ekim 1923" verisi hangi veri türüne aittir?</span>
-                        <span class="q-ar">ما نوع البيانات "29 Ekim 1923"؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(2, this, 'A')">A) Sayısal</button>
-                    <button class="option-btn" onclick="selectAnswer(2, this, 'B')">B) Karakter Dizisi</button>
-                    <button class="option-btn" onclick="selectAnswer(2, this, 'C')">C) Özel</button>
-                    <button class="option-btn" onclick="selectAnswer(2, this, 'D')">D) Mantıksal</button>
-                </div>
-                <div class="feedback-msg" id="fb2"></div>
-            </div>
-
-            <!-- Q3 -->
-            <div class="quiz-question" id="q3">
-                <div class="q-text">
-                    <span class="q-num">3</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">"Bir haftadaki gün sayısı" sabit midir yoksa değişken midir?</span>
-                        <span class="q-ar">هل "عدد أيام الأسبوع" ثابت أم متغير؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(3, this, 'A')">A) Değişken / متغير</button>
-                    <button class="option-btn" onclick="selectAnswer(3, this, 'B')">B) Sabit / ثابت</button>
-                    <button class="option-btn" onclick="selectAnswer(3, this, 'C')">C) Hem sabit hem değişken</button>
-                    <button class="option-btn" onclick="selectAnswer(3, this, 'D')">D) Hiçbiri / لا شيء</button>
-                </div>
-                <div class="feedback-msg" id="fb3"></div>
-            </div>
-
-            <!-- Q4 -->
-            <div class="quiz-question" id="q4">
-                <div class="q-text">
-                    <span class="q-num">4</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">"Yazılıdan aldığımız not" sabit midir yoksa değişken midir?</span>
-                        <span class="q-ar">هل "درجة الامتحان التي نحصل عليها" ثابت أم متغير؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(4, this, 'A')">A) Sabit / ثابت</button>
-                    <button class="option-btn" onclick="selectAnswer(4, this, 'B')">B) Değişken / متغير</button>
-                    <button class="option-btn" onclick="selectAnswer(4, this, 'C')">C) Özel Veri</button>
-                    <button class="option-btn" onclick="selectAnswer(4, this, 'D')">D) Mantıksal</button>
-                </div>
-                <div class="feedback-msg" id="fb4"></div>
-            </div>
-
-            <!-- Q5 -->
-            <div class="quiz-question" id="q5">
-                <div class="q-text">
-                    <span class="q-num">5</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">"İşletim sistemi oluşturmak" basit problem midir yoksa karmaşık problem midir?</span>
-                        <span class="q-ar">هل "إنشاء نظام تشغيل" مشكلة بسيطة أم معقدة؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(5, this, 'A')">A) Basit Problem</button>
-                    <button class="option-btn" onclick="selectAnswer(5, this, 'B')">B) Karmaşık Problem</button>
-                    <button class="option-btn" onclick="selectAnswer(5, this, 'C')">C) Alt Problem</button>
-                    <button class="option-btn" onclick="selectAnswer(5, this, 'D')">D) Hiçbiri</button>
-                </div>
-                <div class="feedback-msg" id="fb5"></div>
-            </div>
-
-            <!-- Q6 -->
-            <div class="quiz-question" id="q6">
-                <div class="q-text">
-                    <span class="q-num">6</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">Eğer fonksiyonu aşağıdakilerden hangisini yapar?</span>
-                        <span class="q-ar">ماذا تفعل دالة "إذا" (Eğer)؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(6, this, 'A')">A) İki sayıyı toplar</button>
-                    <button class="option-btn" onclick="selectAnswer(6, this, 'B')">B) Bir koşulu kontrol eder</button>
-                    <button class="option-btn" onclick="selectAnswer(6, this, 'C')">C) Veri toplar</button>
-                    <button class="option-btn" onclick="selectAnswer(6, this, 'D')">D) Algoritmaya başlar</button>
-                </div>
-                <div class="feedback-msg" id="fb6"></div>
-            </div>
-
-            <!-- Q7 -->
-            <div class="quiz-question" id="q7">
-                <div class="q-text">
-                    <span class="q-num">7</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">Bir algoritma her zaman hangi adımla başlar?</span>
-                        <span class="q-ar">بأي خطوة تبدأ كل خوارزمية دائماً؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(7, this, 'A')">A) Bitir</button>
-                    <button class="option-btn" onclick="selectAnswer(7, this, 'B')">B) Yazdır</button>
-                    <button class="option-btn" onclick="selectAnswer(7, this, 'C')">C) Başla</button>
-                    <button class="option-btn" onclick="selectAnswer(7, this, 'D')">D) Eğer</button>
-                </div>
-                <div class="feedback-msg" id="fb7"></div>
-            </div>
-
-            <!-- Q8 -->
-            <div class="quiz-question" id="q8">
-                <div class="q-text">
-                    <span class="q-num">8</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">yazılı1=40, yazılı2=60 ise ortalama=(40+60)/2=50. "Eğer ortalama&lt;50 ise KALDI yaz değilse GEÇTİ yaz" sonucu nedir?</span>
-                        <span class="q-ar">إذا كانت الدرجة1=40 والدرجة2=60 فالمعدل=50. ما نتيجة "إذا المعدل&lt;50 اطبع رسب وإلا اطبع نجح"؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(8, this, 'A')">A) KALDI / رسب</button>
-                    <button class="option-btn" onclick="selectAnswer(8, this, 'B')">B) GEÇTİ / نجح</button>
-                    <button class="option-btn" onclick="selectAnswer(8, this, 'C')">C) Hata / خطأ</button>
-                    <button class="option-btn" onclick="selectAnswer(8, this, 'D')">D) Belirsiz / غير محدد</button>
-                </div>
-                <div class="feedback-msg" id="fb8"></div>
-            </div>
-
-            <!-- Q9 -->
-            <div class="quiz-question" id="q9">
-                <div class="q-text">
-                    <span class="q-num">9</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">Diş fırçalama algoritmasında "Başla" kaçıncı adımdır?</span>
-                        <span class="q-ar">في خوارزمية تنظيف الأسنان، ما ترتيب خطوة "ابدأ"؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(9, this, 'A')">A) 1. adım</button>
-                    <button class="option-btn" onclick="selectAnswer(9, this, 'B')">B) 2. adım</button>
-                    <button class="option-btn" onclick="selectAnswer(9, this, 'C')">C) 3. adım</button>
-                    <button class="option-btn" onclick="selectAnswer(9, this, 'D')">D) Son adım</button>
-                </div>
-                <div class="feedback-msg" id="fb9"></div>
-            </div>
-
-            <!-- Q10 -->
-            <div class="quiz-question" id="q10">
-                <div class="q-text">
-                    <span class="q-num">10</span>
-                    <div class="q-text-bilingual">
-                        <span class="q-tr">"Kübra" ifadesi hangi veri türüne örnektir?</span>
-                        <span class="q-ar">ما نوع البيانات "Kübra"؟</span>
-                    </div>
-                </div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="selectAnswer(10, this, 'A')">A) Karakter</button>
-                    <button class="option-btn" onclick="selectAnswer(10, this, 'B')">B) Sayısal</button>
-                    <button class="option-btn" onclick="selectAnswer(10, this, 'C')">C) Karakter Dizisi</button>
-                    <button class="option-btn" onclick="selectAnswer(10, this, 'D')">D) Mantıksal</button>
-                </div>
-                <div class="feedback-msg" id="fb10"></div>
-            </div>
-
-        </div>
+        <div class="quiz-body" id="quizBody"></div>
     </div>
 
     <div class="score-board" id="scoreBoard">
         <h3>Sonuç / النتيجة</h3>
-        <div class="score-display" id="scoreDisplay">- <span>/ 10</span></div>
+        <div class="score-display" id="scoreDisplay">0 <span>/ 25</span></div>
         <br>
-        <button class="check-btn" onclick="checkAllAnswers()">Cevapları Kontrol Et / تحقق من الإجابات</button>
-        <br>
-        <button class="reset-btn" onclick="resetQuiz()">Tekrar Dene / أعد المحاولة</button>
+        <button class="reset-btn" onclick="resetQuiz()" style="border-color: white; font-size: 1em; padding: 14px 40px;">🔄 Tekrar Dene / أعد المحاولة</button>
     </div>
 </div>
 
@@ -1023,101 +848,146 @@
 
 <script>
     function revealTag(el) {
-        if (el.classList.contains('hidden-answer')) {
-            el.classList.remove('hidden-answer');
-            el.classList.add('revealed');
-        } else {
-            el.classList.add('hidden-answer');
-            el.classList.remove('revealed');
-        }
+        if (el.classList.contains('hidden-answer')) { el.classList.remove('hidden-answer'); el.classList.add('revealed'); }
+        else { el.classList.add('hidden-answer'); el.classList.remove('revealed'); }
     }
 
-    const correctAnswers = {
-        1: 'B', 2: 'C', 3: 'B', 4: 'B', 5: 'B',
-        6: 'B', 7: 'C', 8: 'B', 9: 'A', 10: 'C'
+    const allQuestions = [
+        // === VERİ TÜRLERİ (1-7) ===
+        { tr: '"Kaç kilosunuz?" sorusuna verilen "61" cevabı hangi veri türüdür?', ar: 'ما نوع البيانات للإجابة "61" على سؤال "كم وزنك؟"', opts: ['Karakter', 'Sayısal', 'Mantıksal', 'Özel'], ans: 1, expTr: '61 bir sayıdır, bu yüzden Sayısal Veridir.', expAr: '61 هو عدد، لذلك هو بيانات رقمية.', cat: 'Veri Türleri' },
+        { tr: '"29 Ekim 1923" verisi hangi veri türüne aittir?', ar: 'ما نوع البيانات "29 Ekim 1923"؟', opts: ['Sayısal', 'Karakter Dizisi', 'Özel', 'Mantıksal'], ans: 2, expTr: 'Tarih verisidir, bu yüzden Özel Veridir.', expAr: 'هو تاريخ، لذلك هو بيانات خاصة.', cat: 'Veri Türleri' },
+        { tr: '"Kübra" ifadesi hangi veri türüne örnektir?', ar: 'ما نوع البيانات "Kübra"؟', opts: ['Karakter', 'Sayısal', 'Karakter Dizisi', 'Mantıksal'], ans: 2, expTr: 'Birden fazla karakterden oluşur, Karakter Dizisidir.', expAr: 'تتكون من أكثر من حرف، لذلك هي سلسلة حرفية.', cat: 'Veri Türleri' },
+        { tr: 'Ankara kelimesinin üçüncü harfi olan "k" hangi veri türüdür?', ar: 'ما نوع الحرف "k" وهو الحرف الثالث من Ankara؟', opts: ['Sayısal', 'Karakter', 'Karakter Dizisi', 'Özel'], ans: 1, expTr: 'Tek bir sembolden oluşur, Karakter Veridir.', expAr: 'يتكون من رمز واحد فقط، لذلك هو بيانات حرفية.', cat: 'Veri Türleri' },
+        { tr: '"3 sayısı 5 sayısından küçük müdür?" sorusuna verilen "Evet" cevabı hangi veri türüdür?', ar: 'ما نوع الإجابة "نعم" على سؤال "هل 3 أصغر من 5؟"', opts: ['Sayısal', 'Özel', 'Karakter Dizisi', 'Mantıksal'], ans: 3, expTr: 'Evet/Hayır cevabı Mantıksal Veridir.', expAr: 'إجابة نعم/لا هي بيانات منطقية.', cat: 'Veri Türleri' },
+        { tr: '"14:30" verisi hangi veri türüne aittir?', ar: 'ما نوع البيانات "14:30"؟', opts: ['Sayısal', 'Karakter Dizisi', 'Mantıksal', 'Özel'], ans: 3, expTr: 'Saat verisi biçimlendirilmiş veridir, Özel Veridir.', expAr: 'الوقت بيانات منسّقة، لذلك هو بيانات خاصة.', cat: 'Veri Türleri' },
+        { tr: 'Bilgisayarda veriler kaç gruba ayrılır?', ar: 'إلى كم مجموعة تنقسم البيانات في الحاسوب؟', opts: ['3', '4', '5', '6'], ans: 2, expTr: 'Veriler 5 gruba ayrılır: Sayısal, Karakter, Karakter Dizisi, Mantıksal, Özel.', expAr: 'البيانات تنقسم إلى 5 مجموعات: رقمية، حرفية، سلسلة حرفية، منطقية، خاصة.', cat: 'Veri Türleri' },
+
+        // === SABİT VE DEĞİŞKEN (8-13) ===
+        { tr: '"Bir haftadaki gün sayısı" sabit midir yoksa değişken midir?', ar: 'هل "عدد أيام الأسبوع" ثابت أم متغير؟', opts: ['Değişken', 'Sabit', 'Hem sabit hem değişken', 'Hiçbiri'], ans: 1, expTr: 'Haftada her zaman 7 gün vardır, değişmez. Sabittir.', expAr: 'الأسبوع دائماً 7 أيام ولا يتغير، لذلك هو ثابت.', cat: 'Sabit / Değişken' },
+        { tr: '"Yazılıdan aldığımız not" sabit midir yoksa değişken midir?', ar: 'هل "درجة الامتحان" ثابت أم متغير؟', opts: ['Sabit', 'Değişken', 'Özel Veri', 'Mantıksal'], ans: 1, expTr: 'Her sınavda farklı not alabiliriz, Değişkendir.', expAr: 'يمكن أن نحصل على درجة مختلفة كل امتحان، لذلك هو متغير.', cat: 'Sabit / Değişken' },
+        { tr: '"Basketbol oyununda pota sayısı" sabit midir yoksa değişken midir?', ar: 'هل "عدد السلال في كرة السلة" ثابت أم متغير؟', opts: ['Değişken', 'Sabit', 'Karakter', 'Özel'], ans: 1, expTr: 'Her zaman 2 pota vardır, değişmez. Sabittir.', expAr: 'دائماً يوجد سلتان ولا يتغير، لذلك هو ثابت.', cat: 'Sabit / Değişken' },
+        { tr: '"Sınıflardaki öğrenci sayısı" sabit midir yoksa değişken midir?', ar: 'هل "عدد الطلاب في الصف" ثابت أم متغير؟', opts: ['Sabit', 'Değişken', 'Sayısal', 'Karakter'], ans: 1, expTr: 'Öğrenci sayısı değişebilir, Değişkendir.', expAr: 'عدد الطلاب يمكن أن يتغير، لذلك هو متغير.', cat: 'Sabit / Değişken' },
+        { tr: '"Deniz seviyesindeki suyun kaynama sıcaklığı" sabit midir?', ar: 'هل "درجة غليان الماء عند سطح البحر" ثابت؟', opts: ['Değişken', 'Sabit', 'Özel', 'Mantıksal'], ans: 1, expTr: 'Her zaman 100°C dir, değişmez. Sabittir.', expAr: 'دائماً 100°C ولا تتغير، لذلك هي ثابتة.', cat: 'Sabit / Değişken' },
+        { tr: 'Sabit nedir?', ar: 'ما هو الثابت؟', opts: ['Değerleri değişen veriler', 'İlk değerini koruyan, değişmeyen veriler', 'Biçimlendirilmiş veriler', 'Tek sembolden oluşan veriler'], ans: 1, expTr: 'Sabit, ilk değerini koruyan ve değişmeyen verilerdir.', expAr: 'الثابت هو البيانات التي تحافظ على قيمتها الأولى ولا تتغير.', cat: 'Sabit / Değişken' },
+
+        // === PROBLEM TÜRLERİ (14-17) ===
+        { tr: '"İşletim sistemi oluşturmak" basit problem midir yoksa karmaşık problem midir?', ar: 'هل "إنشاء نظام تشغيل" مشكلة بسيطة أم معقدة؟', opts: ['Basit', 'Karmaşık', 'Alt Problem', 'Hiçbiri'], ans: 1, expTr: 'Birçok alt probleme sahiptir, Karmaşık Problemdir.', expAr: 'له مشكلات فرعية كثيرة، لذلك هو مشكلة معقدة.', cat: 'Problem Türleri' },
+        { tr: '"Alarm kurmak" basit problem midir yoksa karmaşık problem midir?', ar: 'هل "ضبط المنبه" مشكلة بسيطة أم معقدة؟', opts: ['Basit', 'Karmaşık', 'Alt Problem', 'Fonksiyon'], ans: 0, expTr: 'Basit adımlarla çözülür, Basit Problemdir.', expAr: 'يُحل بخطوات بسيطة، لذلك هو مشكلة بسيطة.', cat: 'Problem Türleri' },
+        { tr: 'Karmaşık problemlerin en önemli özelliği nedir?', ar: 'ما أهم خاصية للمشكلات المعقدة؟', opts: ['Çözümsüzdür', 'Alt problemlere ayrılabilir', 'Sadece bilgisayarla çözülür', 'Tek adımda çözülür'], ans: 1, expTr: 'Karmaşık problemler alt problemlere ayrılabilir.', expAr: 'المشكلات المعقدة يمكن تقسيمها إلى مشكلات فرعية.', cat: 'Problem Türleri' },
+        { tr: '"Çay demlemek" hangi tür problemdir?', ar: 'ما نوع مشكلة "تحضير الشاي"؟', opts: ['Karmaşık', 'Basit', 'Alt Problem', 'Algoritma'], ans: 1, expTr: 'Basit adımlarla çözülür, Basit Problemdir.', expAr: 'يُحل بخطوات بسيطة، مشكلة بسيطة.', cat: 'Problem Türleri' },
+
+        // === FONKSİYONLAR (18-21) ===
+        { tr: 'Eğer fonksiyonu aşağıdakilerden hangisini yapar?', ar: 'ماذا تفعل دالة "إذا" (Eğer)؟', opts: ['İki sayıyı toplar', 'Bir koşulu kontrol eder', 'Veri toplar', 'Algoritmayı bitirir'], ans: 1, expTr: 'Eğer fonksiyonu bir koşulu kontrol eder.', expAr: 'دالة "إذا" تتحقق من شرط.', cat: 'Fonksiyonlar' },
+        { tr: 'yazılı1=40, yazılı2=60 ise ortalama=50. "Eğer ortalama<50 ise KALDI değilse GEÇTİ" sonucu nedir?', ar: 'إذا كان المعدل=50. ما نتيجة "إذا المعدل<50 رسب وإلا نجح"؟', opts: ['KALDI / رسب', 'GEÇTİ / نجح', 'Hata / خطأ', 'Belirsiz / غير محدد'], ans: 1, expTr: '50<50 yanlıştır (eşit, küçük değil), GEÇTİ yazılır.', expAr: '50 ليس أصغر من 50 (متساوي)، لذلك يُطبع "نجح".', cat: 'Fonksiyonlar' },
+        { tr: 'yazılı1=20, yazılı2=30 ise ortalama=25. "Eğer ortalama<50 ise KALDI değilse GEÇTİ" sonucu nedir?', ar: 'إذا كان المعدل=25. ما نتيجة "إذا المعدل<50 رسب وإلا نجح"؟', opts: ['GEÇTİ / نجح', 'KALDI / رسب', 'Hata / خطأ', 'Belirsiz / غير محدد'], ans: 1, expTr: '25<50 doğrudur, KALDI yazılır.', expAr: '25 أصغر من 50، لذلك يُطبع "رسب".', cat: 'Fonksiyonlar' },
+        { tr: 'Fonksiyon nedir?', ar: 'ما هي الدالة (Fonksiyon)؟', opts: ['Bir veri türü', 'Belirli işleri yürüten işlemler', 'Bir problem çeşidi', 'Değişken türü'], ans: 1, expTr: 'Fonksiyonlar belirli işleri yürüten ya da yürütülmesini sağlayan işlemlerdir.', expAr: 'الدوال هي عمليات تنفذ مهام معينة أو تساعد في تنفيذها.', cat: 'Fonksiyonlar' },
+
+        // === ALGORİTMA (22-25) ===
+        { tr: 'Bir algoritma her zaman hangi adımla başlar?', ar: 'بأي خطوة تبدأ كل خوارزمية دائماً؟', opts: ['Bitir', 'Yazdır', 'Başla', 'Eğer'], ans: 2, expTr: 'Her algoritma her zaman "Başla" ile başlar.', expAr: 'كل خوارزمية تبدأ دائماً بـ "ابدأ".', cat: 'Algoritma' },
+        { tr: 'Bir algoritma her zaman hangi adımla biter?', ar: 'بأي خطوة تنتهي كل خوارزمية دائماً؟', opts: ['Başla', 'Yazdır', 'Eğer', 'Bitir'], ans: 3, expTr: 'Her algoritma her zaman "Bitir" ile sona erer.', expAr: 'كل خوارزمية تنتهي دائماً بـ "انتهِ".', cat: 'Algoritma' },
+        { tr: 'Diş fırçalama algoritması karıştırılmış. İlk adım ne olmalıdır?', ar: 'خوارزمية تنظيف الأسنان مختلطة. ما يجب أن تكون الخطوة الأولى؟', opts: ['Diş macunu sür', 'Dişlerini fırçala', 'Başla', 'Diş macununu al'], ans: 2, expTr: 'Her algoritmada ilk adım her zaman "Başla" dır.', expAr: 'الخطوة الأولى في أي خوارزمية هي دائماً "ابدأ".', cat: 'Hatalı Algoritma' },
+        { tr: 'Bir problemin kaç farklı algoritması olabilir?', ar: 'كم خوارزمية مختلفة يمكن أن تكون لمشكلة واحدة؟', opts: ['Sadece 1', 'Sadece 2', 'Birden fazla', 'Hiç olmaz'], ans: 2, expTr: 'Bir problemin birden fazla farklı algoritması olabilir.', expAr: 'يمكن أن يكون للمشكلة الواحدة أكثر من خوارزمية مختلفة.', cat: 'Algoritma' },
+    ];
+
+    let score = 0;
+    const answered = {};
+    const letters = ['A', 'B', 'C', 'D'];
+    const catColors = {
+        'Veri Türleri': '#2563eb',
+        'Sabit / Değişken': '#7c3aed',
+        'Problem Türleri': '#059669',
+        'Fonksiyonlar': '#d97706',
+        'Algoritma': '#dc2626',
+        'Hatalı Algoritma': '#be185d'
     };
 
-    const explanations = {
-        1: { tr: '61 bir sayıdır, bu yüzden Sayısal Veri\'dir.', ar: '61 هو عدد، لذلك هو بيانات رقمية.' },
-        2: { tr: '29 Ekim 1923 bir tarih verisidir, bu yüzden Özel Veri\'dir.', ar: '29 Ekim 1923 هو تاريخ، لذلك هو بيانات خاصة.' },
-        3: { tr: 'Haftada her zaman 7 gün vardır, değişmez. Bu yüzden Sabit\'tir.', ar: 'الأسبوع دائماً 7 أيام ولا يتغير، لذلك هو ثابت.' },
-        4: { tr: 'Her sınavda farklı not alabiliriz, bu yüzden Değişken\'dir.', ar: 'يمكن أن نحصل على درجة مختلفة كل امتحان، لذلك هو متغير.' },
-        5: { tr: 'İşletim sistemi oluşturmak birçok alt probleme sahiptir, Karmaşık Problem\'dir.', ar: 'إنشاء نظام تشغيل له مشكلات فرعية كثيرة، لذلك هو مشكلة معقدة.' },
-        6: { tr: 'Eğer fonksiyonu bir koşulu kontrol eder: doğru ise bir şey yapar, değilse başka şey yapar.', ar: 'دالة "إذا" تتحقق من شرط: إذا صحيح تفعل شيء، وإلا تفعل شيء آخر.' },
-        7: { tr: 'Her algoritma her zaman "Başla" ile başlar.', ar: 'كل خوارزمية تبدأ دائماً بـ "ابدأ".' },
-        8: { tr: 'ortalama=50, 50<50 yanlıştır (eşit, küçük değil), bu yüzden GEÇTİ yazılır.', ar: 'المعدل=50، و50 ليس أصغر من 50 (متساوي)، لذلك يُطبع "نجح".' },
-        9: { tr: '"Başla" her zaman 1. adımdır.', ar: '"ابدأ" هي دائماً الخطوة الأولى.' },
-        10: { tr: '"Kübra" birden fazla karakterden oluşur, bu yüzden Karakter Dizisi\'dir.', ar: '"Kübra" تتكون من أكثر من حرف، لذلك هي سلسلة حرفية.' }
-    };
-
-    const userAnswers = {};
-
-    function selectAnswer(qNum, btn, answer) {
-        const question = document.getElementById('q' + qNum);
-        const buttons = question.querySelectorAll('.option-btn');
-        buttons.forEach(b => b.classList.remove('selected', 'correct-answer', 'wrong-answer'));
-        btn.classList.add('selected');
-        userAnswers[qNum] = answer;
-        const fb = document.getElementById('fb' + qNum);
-        fb.classList.remove('show');
-        question.classList.remove('correct', 'wrong');
-    }
-
-    function checkAllAnswers() {
-        let score = 0;
-        for (let i = 1; i <= 10; i++) {
-            const question = document.getElementById('q' + i);
-            const fb = document.getElementById('fb' + i);
-            const buttons = question.querySelectorAll('.option-btn');
-
-            if (!userAnswers[i]) {
-                fb.textContent = 'Lütfen bir cevap seçin! / الرجاء اختيار إجابة!';
-                fb.className = 'feedback-msg wrong show';
-                question.classList.add('wrong');
-                continue;
-            }
-
-            const isCorrect = userAnswers[i] === correctAnswers[i];
-            buttons.forEach(b => {
-                const letter = b.textContent.charAt(0);
-                b.classList.remove('selected');
-                if (letter === correctAnswers[i]) b.classList.add('correct-answer');
-                else if (letter === userAnswers[i] && !isCorrect) b.classList.add('wrong-answer');
+    function buildQuiz() {
+        const body = document.getElementById('quizBody');
+        body.innerHTML = '';
+        allQuestions.forEach((q, i) => {
+            const n = i + 1;
+            const catColor = catColors[q.cat] || '#64748b';
+            let html = '<div class="quiz-question" id="q' + n + '">';
+            html += '<div class="q-text"><span class="q-num">' + n + '</span>';
+            html += '<div class="q-text-bilingual">';
+            html += '<span style="display:inline-block;padding:2px 10px;border-radius:50px;font-size:0.7em;font-weight:600;background:' + catColor + '20;color:' + catColor + ';margin-bottom:6px;">' + q.cat + '</span>';
+            html += '<span class="q-tr">' + q.tr + '</span>';
+            html += '<span class="q-ar">' + q.ar + '</span>';
+            html += '</div></div>';
+            html += '<div class="options-grid">';
+            q.opts.forEach((opt, oi) => {
+                html += '<button class="option-btn" onclick="selectAnswer(' + n + ', this, ' + oi + ')">' + letters[oi] + ') ' + opt + '</button>';
             });
+            html += '</div>';
+            html += '<button class="check-single-btn" id="chk' + n + '" onclick="checkSingle(' + n + ')" disabled>Kontrol Et / تحقق ❓</button>';
+            html += '<div class="feedback-msg" id="fb' + n + '"></div>';
+            html += '</div>';
+            body.innerHTML += html;
+        });
+    }
 
-            if (isCorrect) {
-                score++;
-                fb.innerHTML = '&#10004; Doğru! / صحيح! - ' + explanations[i].tr + ' | ' + explanations[i].ar;
-                fb.className = 'feedback-msg correct show';
-                question.classList.remove('wrong');
-                question.classList.add('correct');
-            } else {
-                fb.innerHTML = '&#10008; Yanlış! / خطأ! - ' + explanations[i].tr + ' | ' + explanations[i].ar;
-                fb.className = 'feedback-msg wrong show';
-                question.classList.remove('correct');
-                question.classList.add('wrong');
-            }
+    function selectAnswer(qNum, btn, ansIdx) {
+        if (answered[qNum]) return;
+        const question = document.getElementById('q' + qNum);
+        question.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        question.dataset.selected = ansIdx;
+        document.getElementById('chk' + qNum).disabled = false;
+    }
+
+    function checkSingle(qNum) {
+        if (answered[qNum]) return;
+        const question = document.getElementById('q' + qNum);
+        const sel = parseInt(question.dataset.selected);
+        if (isNaN(sel)) return;
+        answered[qNum] = true;
+        const q = allQuestions[qNum - 1];
+        const fb = document.getElementById('fb' + qNum);
+        const buttons = question.querySelectorAll('.option-btn');
+        const checkBtn = document.getElementById('chk' + qNum);
+
+        buttons.forEach((b, i) => {
+            b.style.pointerEvents = 'none';
+            if (i === q.ans) b.classList.add('correct-answer');
+            else if (i === sel && sel !== q.ans) b.classList.add('wrong-answer');
+        });
+
+        if (sel === q.ans) {
+            score++;
+            fb.innerHTML = '✅ Doğru! / صحيح! — ' + q.expTr + ' | ' + q.expAr;
+            fb.className = 'feedback-msg correct show';
+            question.classList.add('correct');
+            checkBtn.innerHTML = '✅ Doğru!';
+            checkBtn.style.background = '#d1fae5';
+            checkBtn.style.color = '#065f46';
+            checkBtn.style.borderColor = '#6ee7b7';
+        } else {
+            fb.innerHTML = '❌ Yanlış! / خطأ! — ' + q.expTr + ' | ' + q.expAr;
+            fb.className = 'feedback-msg wrong show';
+            question.classList.add('wrong');
+            checkBtn.innerHTML = '❌ Yanlış!';
+            checkBtn.style.background = '#fee2e2';
+            checkBtn.style.color = '#991b1b';
+            checkBtn.style.borderColor = '#fca5a5';
         }
+        checkBtn.disabled = true;
 
         const display = document.getElementById('scoreDisplay');
-        display.innerHTML = score + ' <span>/ 10</span>';
-        display.style.color = score === 10 ? '#4ade80' : score >= 7 ? '#fbbf24' : '#f87171';
-        document.getElementById('scoreBoard').scrollIntoView({ behavior: 'smooth' });
+        const total = Object.keys(answered).length;
+        display.innerHTML = score + ' <span>/ ' + total + '</span>';
+        display.style.color = (score / total) >= 0.8 ? '#4ade80' : (score / total) >= 0.5 ? '#fbbf24' : '#f87171';
     }
 
     function resetQuiz() {
-        for (let i = 1; i <= 10; i++) {
-            const question = document.getElementById('q' + i);
-            const fb = document.getElementById('fb' + i);
-            question.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected', 'correct-answer', 'wrong-answer'));
-            fb.className = 'feedback-msg';
-            question.classList.remove('correct', 'wrong');
-        }
-        Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
-        document.getElementById('scoreDisplay').innerHTML = '- <span>/ 10</span>';
+        score = 0;
+        Object.keys(answered).forEach(k => delete answered[k]);
+        buildQuiz();
+        document.getElementById('scoreDisplay').innerHTML = '0 <span>/ 25</span>';
         document.getElementById('scoreDisplay').style.color = 'white';
         window.scrollTo({ top: document.getElementById('quiz').offsetTop - 70, behavior: 'smooth' });
     }
+
+    buildQuiz();
 
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
