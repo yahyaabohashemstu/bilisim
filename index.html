@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilişim Teknolojileri - Sınav Hazırlık</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Arabic', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+
+        .hero > * { position: relative; z-index: 1; }
+        .hero h1 { font-size: 2.5em; font-weight: 800; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 8px; }
+        .hero .school { font-size: 0.95em; opacity: 0.75; margin-bottom: 25px; }
+        .hero .badge-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .hero .badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .nav-bar {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            padding: 0 20px;
+            overflow-x: auto;
+        }
+        .nav-bar ul { display: flex; list-style: none; max-width: 1200px; margin: 0 auto; }
+        .nav-bar li a {
+            display: block; padding: 14px 18px; text-decoration: none;
+            color: var(--text-light); font-weight: 500; font-size: 0.85em;
+            white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s;
+        }
+        .nav-bar li a:hover, .nav-bar li a.active {
+            color: var(--primary); border-bottom-color: var(--primary); background: #eff6ff;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 30px 20px; }
+
+        .section { margin-bottom: 50px; scroll-margin-top: 70px; animation: fadeInUp 0.5s ease; }
+
+        .section-header {
+            display: flex; align-items: center; gap: 15px;
+            margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--primary);
+        }
+        .section-number {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; width: 50px; height: 50px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4em; font-weight: 800; flex-shrink: 0;
+        }
+        .section-title-group { flex: 1; }
+        .section-title-tr { font-size: 1.3em; font-weight: 700; color: var(--text); }
+        .section-title-ar { font-size: 1.1em; font-weight: 600; color: var(--primary); direction: rtl; font-family: 'Noto Sans Arabic', sans-serif; }
+        .section-badge { background: #fef3c7; color: #92400e; padding: 4px 14px; border-radius: 50px; font-size: 0.8em; font-weight: 600; white-space: nowrap; }
+
+        .bilingual-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+            background: var(--card-bg); border-radius: var(--radius);
+            box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px;
+        }
+        .col-tr, .col-ar { padding: 28px; }
+        .col-tr { border-right: 3px solid var(--primary); direction: ltr; text-align: left; }
+        .col-ar { direction: rtl; text-align: right; font-family: 'Noto Sans Arabic', sans-serif; background: #fafbff; }
+        .col-tr .lang-label, .col-ar .lang-label {
+            display: inline-block; padding: 3px 12px; border-radius: 50px;
+            font-size: 0.75em; font-weight: 600; margin-bottom: 15px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .col-tr .lang-label { background: #dbeafe; color: #1e40af; }
+        .col-ar .lang-label { background: #f3e8ff; color: #6b21a8; }
+        .col-tr h3, .col-ar h3 { font-size: 1.15em; font-weight: 700; margin-bottom: 12px; }
+        .col-tr p, .col-ar p { margin-bottom: 10px; color: #475569; line-height: 1.8; }
+
+        .def-box {
+            background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+            border-radius: 12px; padding: 16px 20px; margin: 12px 0;
+            border-left: 4px solid var(--primary);
+        }
+        .col-ar .def-box { border-left: none; border-right: 4px solid var(--secondary); background: linear-gradient(135deg, #faf5ff, #f0fdf4); }
+        .def-box strong { color: var(--primary); }
+        .col-ar .def-box strong { color: var(--secondary); }
+
+        .styled-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; border-radius: 12px; overflow: hidden; }
+        .styled-table thead tr { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .col-ar .styled-table thead tr { background: linear-gradient(135deg, var(--secondary), #5b21b6); }
+        .styled-table th, .styled-table td { padding: 12px 16px; text-align: center; }
+        .styled-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+        .styled-table tbody tr:hover { background: #f1f5f9; }
+        .styled-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+        .tag { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.8em; font-weight: 600; }
+        .tag-sayisal { background: #dbeafe; color: #1e40af; }
+        .tag-karakter { background: #dcfce7; color: #166534; }
+        .tag-karakter-dizisi { background: #fef3c7; color: #92400e; }
+        .tag-mantiksal { background: #fce7f3; color: #9d174d; }
+        .tag-ozel { background: #e0e7ff; color: #3730a3; }
+        .tag-sabit { background: #d1fae5; color: #065f46; }
+        .tag-degisken { background: #fee2e2; color: #991b1b; }
+        .tag-basit { background: #d1fae5; color: #065f46; }
+        .tag-karmasik { background: #fef3c7; color: #92400e; }
+
+        .algo-box {
+            background: #1e293b; color: #e2e8f0; border-radius: 12px;
+            padding: 20px 24px; margin: 15px 0; font-family: 'Courier New', monospace;
+            font-size: 0.9em; line-height: 2; direction: ltr; text-align: left;
+        }
+        .algo-box .line-num { color: #64748b; margin-right: 12px; user-select: none; }
+        .algo-box .keyword { color: #38bdf8; font-weight: 700; }
+        .algo-box .var-name { color: #a78bfa; }
+        .algo-box .op { color: #fbbf24; }
+        .algo-box .string-val { color: #4ade80; }
+        .algo-box .highlight-line {
+            background: rgba(251, 191, 36, 0.15); display: block;
+            padding: 2px 8px; margin: 0 -8px; border-radius: 4px; border-left: 3px solid #fbbf24;
+        }
+
+        .quiz-container { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
+        .quiz-header { background: linear-gradient(135deg, #059669, #10b981); color: white; padding: 18px 24px; display: flex; align-items: center; gap: 12px; }
+        .quiz-header h3 { font-size: 1.1em; }
+        .quiz-body { padding: 24px; }
+
+        .quiz-question {
+            background: #f8fafc; border-radius: 12px; padding: 20px;
+            margin-bottom: 16px; border: 2px solid var(--border); transition: border-color 0.2s;
+        }
+        .quiz-question.correct { border-color: var(--success); background: #f0fdf4; }
+        .quiz-question.wrong { border-color: var(--danger); background: #fef2f2; }
+        .quiz-question .q-text { font-weight: 600; margin-bottom: 12px; display: flex; gap: 8px; }
+        .quiz-question .q-text .q-num {
+            background: var(--primary); color: white; width: 28px; height: 28px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.85em; flex-shrink: 0;
+        }
+        .quiz-question .q-text-bilingual { flex: 1; }
+        .quiz-question .q-tr { display: block; margin-bottom: 4px; }
+        .quiz-question .q-ar { display: block; direction: rtl; font-family: 'Noto Sans Arabic', sans-serif; color: var(--text-light); font-size: 0.9em; }
+
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+        .option-btn {
+            padding: 10px 16px; border: 2px solid var(--border); border-radius: 10px;
+            background: white; cursor: pointer; font-size: 0.9em; font-weight: 500;
+            transition: all 0.15s; text-align: center; font-family: inherit;
+        }
+        .option-btn:hover { border-color: var(--primary); background: #eff6ff; }
+        .option-btn.selected { border-color: var(--primary); background: #dbeafe; color: var(--primary-dark); }
+        .option-btn.correct-answer { border-color: var(--success); background: #d1fae5; color: #065f46; }
+        .option-btn.wrong-answer { border-color: var(--danger); background: #fee2e2; color: #991b1b; }
+
+        .feedback-msg { margin-top: 10px; padding: 10px 16px; border-radius: 8px; font-weight: 500; display: none; font-size: 0.9em; }
+        .feedback-msg.show { display: block; }
+        .feedback-msg.correct { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+        .feedback-msg.wrong { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        .score-board {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border-radius: var(--radius); padding: 24px;
+            text-align: center; margin: 30px 0; box-shadow: var(--shadow-lg);
+        }
+        .score-board h3 { font-size: 1.2em; margin-bottom: 15px; }
+        .score-display { font-size: 3em; font-weight: 900; }
+        .score-display span { font-size: 0.5em; opacity: 0.8; }
+
+        .check-btn {
+            background: white; color: var(--primary); border: none;
+            padding: 14px 40px; border-radius: 50px; font-size: 1em;
+            font-weight: 700; cursor: pointer; margin-top: 15px;
+            transition: transform 0.1s; font-family: inherit;
+        }
+        .check-btn:hover { transform: scale(1.05); }
+        .check-btn:active { transform: scale(0.98); }
+
+        .reset-btn {
+            background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4);
+            padding: 10px 30px; border-radius: 50px; font-size: 0.9em;
+            font-weight: 600; cursor: pointer; margin-top: 10px;
+            transition: all 0.15s; font-family: inherit;
+        }
+        .reset-btn:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        .tip-box {
+            background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px;
+            padding: 16px 20px; margin: 15px 0; display: flex; gap: 10px; align-items: flex-start;
+        }
+        .tip-box .tip-icon { font-size: 1.3em; flex-shrink: 0; }
+
+        .footer { background: #1e293b; color: #94a3b8; text-align: center; padding: 30px 20px; margin-top: 50px; }
+        .footer strong { color: white; }
+
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; z-index: 200; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); width: 0%; transition: width 0.2s; }
+
+        .compare-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 15px 0; }
+        .compare-card { border-radius: 12px; padding: 18px; text-align: center; }
+        .compare-card.type-a { background: #d1fae5; border: 2px solid #6ee7b7; }
+        .compare-card.type-b { background: #fee2e2; border: 2px solid #fca5a5; }
+        .compare-card h4 { font-size: 1.1em; margin-bottom: 8px; }
+        .compare-card p { font-size: 0.85em; color: #475569; }
+
+        .example-tag {
+            display: inline-block; background: #eff6ff; color: var(--primary);
+            padding: 2px 10px; border-radius: 6px; font-size: 0.85em; font-weight: 600; margin: 2px;
+        }
+        .col-ar .example-tag { background: #f5f3ff; color: var(--secondary); }
+
+        @media (max-width: 768px) {
+            .bilingual-row { grid-template-columns: 1fr; }
+            .col-tr { border-right: none; border-bottom: 3px solid var(--primary); }
+            .hero h1 { font-size: 1.8em; }
+            .options-grid { grid-template-columns: 1fr; }
+            .compare-cards { grid-template-columns: 1fr; }
+            .nav-bar li a { padding: 12px 10px; font-size: 0.78em; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>Bilişim Teknolojileri ve Yazılım</h1>
+    <div class="subtitle">تقنية المعلومات والبرمجيات - دليل المراجعة الشامل</div>
+    <div class="school">Süleyman Demirel Ortaokulu | Kilis | 2025-2026</div>
+    <div class="badge-row">
+        <span class="badge">5. Ünite: Problem Çözme ve Programlama</span>
+        <span class="badge">10 Soru</span>
+        <span class="badge">2. Dönem 1. Yazılı</span>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+    <ul>
+        <li><a href="#section1">1. Veri Türleri</a></li>
+        <li><a href="#section2">2. Sabit ve Değişken</a></li>
+        <li><a href="#section3">3. Problem Türleri</a></li>
+        <li><a href="#section4">4. Fonksiyonlar</a></li>
+        <li><a href="#section5">5. Algoritma</a></li>
+        <li><a href="#section6">6. Hatalı Algoritma</a></li>
+        <li><a href="#quiz" style="color: var(--success); font-weight: 700;">Sınav Testi</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+<!-- ===== SECTION 1: VERİ TÜRLERİ ===== -->
+<div class="section" id="section1">
+    <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Verileri Toplayarak Türlerine Göre Sınıflandırma</div>
+            <div class="section-title-ar">جمع البيانات وتصنيفها حسب أنواعها</div>
+        </div>
+        <span class="section-badge">2 Soru</span>
+    </div>
+
+    <div class="bilingual-row">
+        <div class="col-tr">
+            <span class="lang-label">Türkçe</span>
+            <h3>Veri Türleri (5 Grup)</h3>
+            <p>Bilgisayarda veriler <strong>beş gruba</strong> ayrılır:</p>
+
+            <div class="def-box">
+                <strong>1. Sayısal Veri:</strong> Tüm sayıları kapsar. Kütle, uzunluk, yaş gibi veriler bu grubun içindedir.<br>
+                <span class="example-tag">Örnek: 61, 3.14, 100</span>
+            </div>
+            <div class="def-box">
+                <strong>2. Karakter Veri:</strong> Rakam, harf, özel karakter gibi <u>tek bir sembolden</u> oluşur.<br>
+                <span class="example-tag">Örnek: a, 5, ?, k</span>
+            </div>
+            <div class="def-box">
+                <strong>3. Karakter Dizisi Veri:</strong> <u>Birden fazla karakterden</u> oluşur.<br>
+                <span class="example-tag">Örnek: Kübra, &lt;3, 1a2b3c4d5e</span>
+            </div>
+            <div class="def-box">
+                <strong>4. Mantıksal Veri:</strong> Karar verme süreçlerinde kullanılır. Cevabı genellikle <u>evet/hayır</u>, <u>doğru/yanlış</u> şeklindedir.<br>
+                <span class="example-tag">Örnek: Evet, Hayır, Doğru, Yanlış</span>
+            </div>
+            <div class="def-box">
+                <strong>5. Özel Veri:</strong> Biçimlendirilmiş verilerdir. <u>Tarih, saat, adres, doğum tarihi</u> gibi veriler bu gruptadır.<br>
+                <span class="example-tag">Örnek: 29 Ekim 1923, 14:30</span>
+            </div>
+
+            <table class="styled-table">
+                <thead><tr><th>Soru</th><th>Cevap</th><th>Veri Türü</th></tr></thead>
+                <tbody>
+                    <tr><td>Kaç kilosunuz?</td><td>61</td><td><span class="tag tag-sayisal">Sayısal</span></td></tr>
+                    <tr><td>Ankara'nın üçüncü harfi</td><td>k</td><td><span class="tag tag-karakter">Karakter</span></td></tr>
+                    <tr><td>3 sayısı 5 sayısından küçük müdür?</td><td>Evet</td><td><span class="tag tag-mantiksal">Mantıksal</span></td></tr>
+                    <tr><td>En sevdiğin yemeğin adı nedir?</td><td>Kilis Tava</td><td><span class="tag tag-karakter-dizisi">Karakter Dizisi</span></td></tr>
+                    <tr><td>Cumhuriyet ne zaman ilan edilmiştir?</td><td>29 Ekim 1923</td><td><span class="tag tag-ozel">Özel</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-ar">
+            <span class="lang-label">عربي</span>
+            <h3>أنواع البيانات (5 مجموعات)</h3>
+            <p>تنقسم البيانات في الحاسوب إلى <strong>خمس مجموعات</strong>:</p>
+
+            <div class="def-box">
+                <strong>1. بيانات رقمية (Sayısal):</strong> تشمل جميع الأرقام. مثل الكتلة، الطول، العمر.<br>
+                <span class="example-tag">مثال: 61، 3.14، 100</span>
+            </div>
+            <div class="def-box">
+                <strong>2. بيانات حرفية (Karakter):</strong> تتكون من <u>رمز واحد فقط</u> مثل رقم أو حرف أو رمز خاص.<br>
+                <span class="example-tag">مثال: a، 5، ?، k</span>
+            </div>
+            <div class="def-box">
+                <strong>3. سلسلة حرفية (Karakter Dizisi):</strong> تتكون من <u>أكثر من حرف</u>.<br>
+                <span class="example-tag">مثال: Kübra، &lt;3، 1a2b3c4d5e</span>
+            </div>
+            <div class="def-box">
+                <strong>4. بيانات منطقية (Mantıksal):</strong> تُستخدم في اتخاذ القرارات. الإجابة عادةً <u>نعم/لا</u> أو <u>صحيح/خطأ</u>.<br>
+                <span class="example-tag">مثال: نعم، لا، صحيح، خطأ</span>
+            </div>
+            <div class="def-box">
+                <strong>5. بيانات خاصة (Özel):</strong> بيانات منسّقة مثل <u>التاريخ، الوقت، العنوان</u>.<br>
+                <span class="example-tag">مثال: 29 أكتوبر 1923، 14:30</span>
+            </div>
+
+            <table class="styled-table">
+                <thead><tr><th>السؤال</th><th>الجواب</th><th>نوع البيانات</th></tr></thead>
+                <tbody>
+                    <tr><td>كم وزنك؟</td><td>61</td><td><span class="tag tag-sayisal">رقمي</span></td></tr>
+                    <tr><td>الحرف الثالث من Ankara</td><td>k</td><td><span class="tag tag-karakter">حرفي</span></td></tr>
+                    <tr><td>هل 3 أصغر من 5؟</td><td>نعم</td><td><span class="tag tag-mantiksal">منطقي</span></td></tr>
+                    <tr><td>أكلتك المفضلة؟</td><td>Kilis Tava</td><td><span class="tag tag-karakter-dizisi">سلسلة حرفية</span></td></tr>
+                    <tr><td>متى أُعلنت الجمهورية؟</td><td>29 Ekim 1923</td><td><span class="tag tag-ozel">خاص</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <div>
+            <strong>Önemli Fark / الفرق المهم:</strong>
+            <span class="example-tag">5</span> = Karakter (tek sembol) | حرفي (رمز واحد) &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="example-tag">61</span> = Sayısal (sayı) | رقمي (عدد) &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="example-tag">Kübra</span> = Karakter Dizisi (birden fazla) | سلسلة حرفية (أكثر من حرف)
+        </div>
+    </div>
+</div>
+
+<!-- ===== SECTION 2: SABİT VE DEĞİŞKEN ===== -->
+<div class="section" id="section2">
+    <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Sabitleri ve Değişkenleri Problem Çözümünde Kullanma</div>
+            <div class="section-title-ar">استخدام الثوابت والمتغيرات في حل المشكلات</div>
+        </div>
+        <span class="section-badge">2 Soru</span>
+    </div>
+
+    <div class="bilingual-row">
+        <div class="col-tr">
+            <span class="lang-label">Türkçe</span>
+            <h3>Sabit ve Değişken Nedir?</h3>
+
+            <div class="compare-cards">
+                <div class="compare-card type-a">
+                    <h4>Sabit</h4>
+                    <p>İlk değerini koruyan, <strong>değişmeyen</strong> veriler ve nesnelere denir.</p>
+                    <br><span class="example-tag">Hep aynı kalır!</span>
+                </div>
+                <div class="compare-card type-b">
+                    <h4>Değişken</h4>
+                    <p>Başlangıç değeri alabilen ve süreç içinde değerleri <strong>değişebilen</strong> verilere denir.</p>
+                    <br><span class="example-tag">Zamanla değişir!</span>
+                </div>
+            </div>
+
+            <table class="styled-table">
+                <thead><tr><th>Nesne</th><th>Nesne Türü</th></tr></thead>
+                <tbody>
+                    <tr><td>Bir haftadaki gün sayısı (7)</td><td><span class="tag tag-sabit">Sabit</span></td></tr>
+                    <tr><td>Sınıflardaki öğrenci sayısı</td><td><span class="tag tag-degisken">Değişken</span></td></tr>
+                    <tr><td>Basketbol oyununda pota sayısı (2)</td><td><span class="tag tag-sabit">Sabit</span></td></tr>
+                    <tr><td>Deniz seviyesindeki suyun kaynama sıcaklığı (100°C)</td><td><span class="tag tag-sabit">Sabit</span></td></tr>
+                    <tr><td>Yazılıdan aldığımız not</td><td><span class="tag tag-degisken">Değişken</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-ar">
+            <span class="lang-label">عربي</span>
+            <h3>ما هو الثابت والمتغير؟</h3>
+
+            <div class="compare-cards">
+                <div class="compare-card type-a">
+                    <h4>الثابت (Sabit)</h4>
+                    <p>البيانات التي تحافظ على قيمتها الأولى و<strong>لا تتغير</strong>.</p>
+                    <br><span class="example-tag">تبقى كما هي دائماً!</span>
+                </div>
+                <div class="compare-card type-b">
+                    <h4>المتغير (Değişken)</h4>
+                    <p>البيانات التي يمكن أن تأخذ قيمة أولية و<strong>تتغير</strong> خلال العملية.</p>
+                    <br><span class="example-tag">تتغير مع الوقت!</span>
+                </div>
+            </div>
+
+            <table class="styled-table">
+                <thead><tr><th>الكائن</th><th>النوع</th></tr></thead>
+                <tbody>
+                    <tr><td>عدد أيام الأسبوع (7)</td><td><span class="tag tag-sabit">ثابت</span></td></tr>
+                    <tr><td>عدد الطلاب في الصف</td><td><span class="tag tag-degisken">متغير</span></td></tr>
+                    <tr><td>عدد السلال في كرة السلة (2)</td><td><span class="tag tag-sabit">ثابت</span></td></tr>
+                    <tr><td>درجة غليان الماء عند سطح البحر (100°C)</td><td><span class="tag tag-sabit">ثابت</span></td></tr>
+                    <tr><td>الدرجة التي نحصل عليها في الامتحان</td><td><span class="tag tag-degisken">متغير</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <div>
+            <strong>Nasıl anlarız? / كيف نفرّق؟</strong><br>
+            Kendine sor: "Bu değer hiç değişir mi?" - Evet ise <span class="tag tag-degisken">Değişken</span>, Hayır ise <span class="tag tag-sabit">Sabit</span><br>
+            اسأل نفسك: "هل يمكن أن تتغير هذه القيمة؟" - نعم = <span class="tag tag-degisken">متغير</span>، لا = <span class="tag tag-sabit">ثابت</span>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SECTION 3: PROBLEM TÜRLERİ ===== -->
+<div class="section" id="section3">
+    <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Bir Problemi Alt Problemlere Bölme</div>
+            <div class="section-title-ar">تقسيم المشكلة إلى مشكلات فرعية</div>
+        </div>
+        <span class="section-badge">1 Soru</span>
+    </div>
+
+    <div class="bilingual-row">
+        <div class="col-tr">
+            <span class="lang-label">Türkçe</span>
+            <h3>Basit ve Karmaşık Problemler</h3>
+
+            <div class="compare-cards">
+                <div class="compare-card type-a">
+                    <h4>Basit Problem</h4>
+                    <p>Basit adımlarla çözülen problemlerdir. Başkasından yardım almadan problem çözüme kavuşturulabilir.</p>
+                    <br>
+                    <span class="example-tag">Ayran hazırlamak</span>
+                    <span class="example-tag">Çay demlemek</span>
+                </div>
+                <div class="compare-card type-b">
+                    <h4>Karmaşık Problem</h4>
+                    <p>Değişebilen çözümlere sahip problemlerdir. <strong>Alt problemlere ayrılabilir.</strong> Bazen başkalarının yardımına ihtiyaç duyulur.</p>
+                    <br>
+                    <span class="example-tag">Okulda başarılı olmak</span>
+                    <span class="example-tag">Araba lastiği değiştirmek</span>
+                </div>
+            </div>
+
+            <table class="styled-table">
+                <thead><tr><th>Problem</th><th>Çözüm Sınıfı</th></tr></thead>
+                <tbody>
+                    <tr><td>Araba yıkamak</td><td><span class="tag tag-basit">Basit</span></td></tr>
+                    <tr><td>Kilis Tava hazırlamak</td><td><span class="tag tag-basit">Basit</span></td></tr>
+                    <tr><td>Futbolda dünya kupası şampiyonu olmak</td><td><span class="tag tag-karmasik">Karmaşık</span></td></tr>
+                    <tr><td>Alarm kurmak</td><td><span class="tag tag-basit">Basit</span></td></tr>
+                    <tr><td>İşletim sistemi oluşturmak</td><td><span class="tag tag-karmasik">Karmaşık</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-ar">
+            <span class="lang-label">عربي</span>
+            <h3>المشكلات البسيطة والمعقدة</h3>
+
+            <div class="compare-cards">
+                <div class="compare-card type-a">
+                    <h4>مشكلة بسيطة (Basit)</h4>
+                    <p>مشكلات تُحل بخطوات بسيطة. يمكن حلها دون مساعدة من أحد.</p>
+                    <br>
+                    <span class="example-tag">تحضير العيران</span>
+                    <span class="example-tag">تحضير الشاي</span>
+                </div>
+                <div class="compare-card type-b">
+                    <h4>مشكلة معقدة (Karmaşık)</h4>
+                    <p>مشكلات لها حلول متغيرة. <strong>يمكن تقسيمها إلى مشكلات فرعية.</strong> أحياناً نحتاج مساعدة الآخرين.</p>
+                    <br>
+                    <span class="example-tag">النجاح في المدرسة</span>
+                    <span class="example-tag">تغيير إطار السيارة</span>
+                </div>
+            </div>
+
+            <table class="styled-table">
+                <thead><tr><th>المشكلة</th><th>نوع الحل</th></tr></thead>
+                <tbody>
+                    <tr><td>غسل السيارة</td><td><span class="tag tag-basit">بسيطة</span></td></tr>
+                    <tr><td>تحضير كليس تافا</td><td><span class="tag tag-basit">بسيطة</span></td></tr>
+                    <tr><td>الفوز ببطولة كأس العالم</td><td><span class="tag tag-karmasik">معقدة</span></td></tr>
+                    <tr><td>ضبط المنبه</td><td><span class="tag tag-basit">بسيطة</span></td></tr>
+                    <tr><td>إنشاء نظام تشغيل</td><td><span class="tag tag-karmasik">معقدة</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <div>
+            <strong>Anahtar Kavram / المفهوم الأساسي:</strong><br>
+            Karmaşık problemler <strong>alt problemlere</strong> bölünebilir. Örneğin "Okulda başarılı olmak" = ders çalışmak + ödevleri yapmak + dersleri dinlemek<br>
+            المشكلات المعقدة يمكن <strong>تقسيمها</strong>. مثلاً "النجاح في المدرسة" = الدراسة + حل الواجبات + الانتباه في الحصة
+        </div>
+    </div>
+</div>
+
+<!-- ===== SECTION 4: FONKSİYONLAR ===== -->
+<div class="section" id="section4">
+    <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Temel Fonksiyonları Problem Çözme Sürecinde Kullanma</div>
+            <div class="section-title-ar">استخدام الدوال الأساسية في حل المشكلات</div>
+        </div>
+        <span class="section-badge">1 Soru</span>
+    </div>
+
+    <div class="bilingual-row">
+        <div class="col-tr">
+            <span class="lang-label">Türkçe</span>
+            <h3>Eğer (IF) Fonksiyonu</h3>
+
+            <div class="def-box">
+                <strong>Fonksiyon nedir?</strong> Belirli işleri yürüten ya da yürütülmesini sağlayan işlemlerdir.
+            </div>
+            <div class="def-box">
+                <strong>Eğer Fonksiyonu:</strong> Bilgisayar programlamada kullanılan temel fonksiyonlardan biridir. Bir koşulu kontrol eder ve sonuca göre işlem yapar.
+            </div>
+
+            <p><strong>Örnek:</strong> Öğrencinin iki yazılı notunun ortalamasını hesaplayarak 50'den küçükse "KALDI", değilse "GEÇTİ" yazdıran algoritma:</p>
+
+            <div class="algo-box">
+                <span class="line-num">1-</span> <span class="keyword">Başla</span><br>
+                <span class="line-num">2-</span> Birinci yazılı notunuzu girin, <span class="var-name">yazılı1</span><br>
+                <span class="line-num">3-</span> İkinci yazılı notunuzu giriniz, <span class="var-name">yazılı2</span><br>
+                <span class="line-num">4-</span> <span class="var-name">ortalama</span> <span class="op">=</span> (<span class="var-name">yazılı1</span> <span class="op">+</span> <span class="var-name">yazılı2</span>) <span class="op">/</span> 2<br>
+                <span class="highlight-line"><span class="line-num">5-</span> <span class="keyword">Eğer</span> <span class="var-name">ortalama</span> <span class="op">&lt;</span> 50 <span class="keyword">ise</span> <span class="string-val">KALDI</span> yaz <span class="keyword">değilse</span> <span class="string-val">GEÇTİ</span> yaz</span>
+                <span class="line-num">6-</span> <span class="keyword">Bitir</span>
+            </div>
+
+            <div class="tip-box">
+                <span class="tip-icon">🔑</span>
+                <div><strong>Dikkat:</strong> 5. satır <strong>Eğer fonksiyonudur</strong>. Koşul doğru ise bir şey yapar, değilse başka bir şey yapar.</div>
+            </div>
+        </div>
+
+        <div class="col-ar">
+            <span class="lang-label">عربي</span>
+            <h3>دالة إذا (IF / Eğer)</h3>
+
+            <div class="def-box">
+                <strong>ما هي الدالة؟</strong> عمليات تنفذ مهام معينة أو تساعد في تنفيذها.
+            </div>
+            <div class="def-box">
+                <strong>دالة إذا (Eğer):</strong> من أهم الدوال الأساسية في البرمجة. تتحقق من شرط ثم تنفذ أمراً بناءً على النتيجة.
+            </div>
+
+            <p><strong>مثال:</strong> خوارزمية تحسب معدل درجتي امتحان للطالب، إذا كان أقل من 50 تطبع "رسب"، وإلا تطبع "نجح":</p>
+
+            <div class="algo-box">
+                <span class="line-num">1-</span> <span class="keyword">ابدأ</span><br>
+                <span class="line-num">2-</span> أدخل درجة الامتحان الأول، <span class="var-name">yazılı1</span><br>
+                <span class="line-num">3-</span> أدخل درجة الامتحان الثاني، <span class="var-name">yazılı2</span><br>
+                <span class="line-num">4-</span> <span class="var-name">المعدل</span> <span class="op">=</span> (<span class="var-name">yazılı1</span> <span class="op">+</span> <span class="var-name">yazılı2</span>) <span class="op">/</span> 2<br>
+                <span class="highlight-line"><span class="line-num">5-</span> <span class="keyword">إذا</span> <span class="var-name">المعدل</span> <span class="op">&lt;</span> 50 <span class="keyword">فإن</span> اطبع <span class="string-val">رسب</span> <span class="keyword">وإلا</span> اطبع <span class="string-val">نجح</span></span>
+                <span class="line-num">6-</span> <span class="keyword">انتهِ</span>
+            </div>
+
+            <div class="tip-box">
+                <span class="tip-icon">🔑</span>
+                <div><strong>انتبه:</strong> السطر 5 هو <strong>دالة إذا</strong>. إذا تحقق الشرط يفعل شيئاً، وإذا لم يتحقق يفعل شيئاً آخر.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SECTION 5: ALGORİTMA ===== -->
+<div class="section" id="section5">
+    <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Problemin Çözümü İçin Bir Algoritma Geliştirme</div>
+            <div class="section-title-ar">تطوير خوارزمية لحل المشكلة</div>
+        </div>
+        <span class="section-badge">2 Soru</span>
+    </div>
+
+    <div class="bilingual-row">
+        <div class="col-tr">
+            <span class="lang-label">Türkçe</span>
+            <h3>Algoritma Nedir?</h3>
+
+            <div class="def-box">
+                <strong>Algoritma:</strong> Bir problemin çözümü için mümkün olduğunca kısa ama detaylı adımlardan oluşur. Her algoritma <span class="keyword" style="color: var(--primary);">Başla</span> ile başlar ve <span class="keyword" style="color: var(--primary);">Bitir</span> ile sona erer.
+            </div>
+
+            <p><strong>Algoritma Örneği 1:</strong> Kullanıcıdan aldığı iki sayıyı toplayarak sonucu gösteren program:</p>
+
+            <div class="algo-box">
+                <span class="line-num">1-</span> <span class="keyword">Başla</span><br>
+                <span class="line-num">2-</span> Birinci sayıyı giriniz, <span class="var-name">sayı1</span><br>
+                <span class="line-num">3-</span> İkinci sayıyı giriniz, <span class="var-name">sayı2</span><br>
+                <span class="line-num">4-</span> <span class="var-name">toplam</span> <span class="op">=</span> <span class="var-name">sayı1</span> <span class="op">+</span> <span class="var-name">sayı2</span><br>
+                <span class="line-num">5-</span> Yazdır <span class="var-name">toplam</span><br>
+                <span class="line-num">6-</span> <span class="keyword">Bitir</span>
+            </div>
+
+            <p><strong>Algoritma Örneği 3:</strong> Bir kareler sisteminde daireden altıgene gitmek için birden fazla farklı algoritma yazılabilir. Bu, bir problemin birden fazla çözümü olabileceğini gösterir.</p>
+        </div>
+
+        <div class="col-ar">
+            <span class="lang-label">عربي</span>
+            <h3>ما هي الخوارزمية؟</h3>
+
+            <div class="def-box">
+                <strong>الخوارزمية:</strong> خطوات قصيرة ومفصّلة قدر الإمكان لحل مشكلة. كل خوارزمية تبدأ بـ <span class="keyword" style="color: var(--secondary);">ابدأ (Başla)</span> وتنتهي بـ <span class="keyword" style="color: var(--secondary);">انتهِ (Bitir)</span>.
+            </div>
+
+            <p><strong>مثال 1:</strong> برنامج يأخذ عددين من المستخدم ويجمعهما ويعرض النتيجة:</p>
+
+            <div class="algo-box">
+                <span class="line-num">1-</span> <span class="keyword">ابدأ</span><br>
+                <span class="line-num">2-</span> أدخل العدد الأول، <span class="var-name">sayı1</span><br>
+                <span class="line-num">3-</span> أدخل العدد الثاني، <span class="var-name">sayı2</span><br>
+                <span class="line-num">4-</span> <span class="var-name">المجموع</span> <span class="op">=</span> <span class="var-name">sayı1</span> <span class="op">+</span> <span class="var-name">sayı2</span><br>
+                <span class="line-num">5-</span> اطبع <span class="var-name">المجموع</span><br>
+                <span class="line-num">6-</span> <span class="keyword">انتهِ</span>
+            </div>
+
+            <p><strong>مثال 3:</strong> في نظام مربعات، يمكن كتابة أكثر من خوارزمية مختلفة للانتقال من نقطة لأخرى. هذا يثبت أن المشكلة الواحدة يمكن أن يكون لها أكثر من حل.</p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <div>
+            <strong>Algoritma Kuralları / قواعد الخوارزمية:</strong><br>
+            1. Her zaman <strong>Başla</strong> ile başlar / تبدأ دائماً بـ <strong>ابدأ</strong><br>
+            2. Her zaman <strong>Bitir</strong> ile biter / تنتهي دائماً بـ <strong>انتهِ</strong><br>
+            3. Adımlar sırayla yazılır / الخطوات تُكتب بالترتيب<br>
+            4. Bir problemin birden fazla algoritması olabilir / يمكن أن يكون للمشكلة أكثر من خوارزمية
+        </div>
+    </div>
+</div>
+
+<!-- ===== SECTION 6: HATALI ALGORİTMA ===== -->
+<div class="section" id="section6">
+    <div class="section-header">
+        <div class="section-number">6</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Hatalı Bir Algoritmayı Doğru Çalışacak Biçimde Düzenleme</div>
+            <div class="section-title-ar">تصحيح خوارزمية خاطئة لتعمل بشكل صحيح</div>
+        </div>
+        <span class="section-badge">2 Soru</span>
+    </div>
+
+    <div class="bilingual-row">
+        <div class="col-tr">
+            <span class="lang-label">Türkçe</span>
+            <h3>Hatalı Algoritmalar Nasıl Düzeltilir?</h3>
+
+            <p><strong>Örnek:</strong> Aşağıdaki diş fırçalama algoritması karıştırılmış. Doğru sırasını bulalım:</p>
+
+            <div style="background: #fef2f2; border-radius: 12px; padding: 16px; margin: 12px 0; border: 2px solid #fca5a5;">
+                <strong style="color: #dc2626;">Karışık Sıralama (Yanlış):</strong>
+                <div class="algo-box" style="background: #450a0a; margin-top: 10px;">
+                    Bitir<br>
+                    Diş fırçasına diş macunu sür<br>
+                    Başla<br>
+                    Diş fırçasını ve diş macununu yerine bırak<br>
+                    Dişlerini fırçala<br>
+                    Diş macunu ve diş fırçasını al
+                </div>
+            </div>
+
+            <div style="background: #f0fdf4; border-radius: 12px; padding: 16px; margin: 12px 0; border: 2px solid #86efac;">
+                <strong style="color: #16a34a;">Doğru Sıralama:</strong>
+                <div class="algo-box" style="background: #052e16; margin-top: 10px;">
+                    <span class="line-num">1-</span> <span class="keyword">Başla</span><br>
+                    <span class="line-num">2-</span> Diş macunu ve diş fırçasını al<br>
+                    <span class="line-num">3-</span> Diş fırçasına diş macunu sür<br>
+                    <span class="line-num">4-</span> Dişlerini fırçala<br>
+                    <span class="line-num">5-</span> Diş fırçasını ve diş macununu yerine bırak<br>
+                    <span class="line-num">6-</span> <span class="keyword">Bitir</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-ar">
+            <span class="lang-label">عربي</span>
+            <h3>كيف نصحح الخوارزميات الخاطئة؟</h3>
+
+            <p><strong>مثال:</strong> خوارزمية تنظيف الأسنان التالية مختلطة الترتيب. لنجد الترتيب الصحيح:</p>
+
+            <div style="background: #fef2f2; border-radius: 12px; padding: 16px; margin: 12px 0; border: 2px solid #fca5a5;">
+                <strong style="color: #dc2626;">الترتيب المختلط (خطأ):</strong>
+                <div class="algo-box" style="background: #450a0a; margin-top: 10px;">
+                    انتهِ<br>
+                    ضع المعجون على الفرشاة<br>
+                    ابدأ<br>
+                    أعِد الفرشاة والمعجون مكانهما<br>
+                    نظّف أسنانك<br>
+                    خذ المعجون والفرشاة
+                </div>
+            </div>
+
+            <div style="background: #f0fdf4; border-radius: 12px; padding: 16px; margin: 12px 0; border: 2px solid #86efac;">
+                <strong style="color: #16a34a;">الترتيب الصحيح:</strong>
+                <div class="algo-box" style="background: #052e16; margin-top: 10px;">
+                    <span class="line-num">1-</span> <span class="keyword">ابدأ</span><br>
+                    <span class="line-num">2-</span> خذ المعجون والفرشاة<br>
+                    <span class="line-num">3-</span> ضع المعجون على الفرشاة<br>
+                    <span class="line-num">4-</span> نظّف أسنانك<br>
+                    <span class="line-num">5-</span> أعِد الفرشاة والمعجون مكانهما<br>
+                    <span class="line-num">6-</span> <span class="keyword">انتهِ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <span class="tip-icon">💡</span>
+        <div>
+            <strong>Düzeltme İpuçları / نصائح التصحيح:</strong><br>
+            1. Önce <strong>Başla</strong>'yı bul (her zaman 1 numara) / ابحث أولاً عن <strong>ابدأ</strong> (دائماً رقم 1)<br>
+            2. Sonra <strong>Bitir</strong>'i bul (her zaman son numara) / ثم ابحث عن <strong>انتهِ</strong> (دائماً الرقم الأخير)<br>
+            3. Aradaki adımları mantıklı sıraya koy / رتّب الخطوات بينهما بشكل منطقي<br>
+            4. Kendin yaptığını hayal et! / تخيّل أنك تقوم بالعمل بنفسك!
+        </div>
+    </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div class="section" id="quiz">
+    <div class="section-header">
+        <div class="section-number" style="background: linear-gradient(135deg, #059669, #10b981);">?</div>
+        <div class="section-title-group">
+            <div class="section-title-tr">Sınav Hazırlık Testi</div>
+            <div class="section-title-ar">اختبار تحضيري للامتحان</div>
+        </div>
+        <span class="section-badge">10 Soru</span>
+    </div>
+
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <span style="font-size: 1.5em;">📝</span>
+            <h3>Kendini Test Et! / اختبر نفسك!</h3>
+        </div>
+        <div class="quiz-body" id="quizBody">
+
+            <!-- Q1 -->
+            <div class="quiz-question" id="q1">
+                <div class="q-text">
+                    <span class="q-num">1</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">"Kaç kilosunuz?" sorusuna verilen "61" cevabı hangi veri türüdür?</span>
+                        <span class="q-ar">ما نوع البيانات للإجابة "61" على سؤال "كم وزنك؟"</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(1, this, 'A')">A) Karakter</button>
+                    <button class="option-btn" onclick="selectAnswer(1, this, 'B')">B) Sayısal</button>
+                    <button class="option-btn" onclick="selectAnswer(1, this, 'C')">C) Mantıksal</button>
+                    <button class="option-btn" onclick="selectAnswer(1, this, 'D')">D) Özel</button>
+                </div>
+                <div class="feedback-msg" id="fb1"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question" id="q2">
+                <div class="q-text">
+                    <span class="q-num">2</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">"29 Ekim 1923" verisi hangi veri türüne aittir?</span>
+                        <span class="q-ar">ما نوع البيانات "29 Ekim 1923"؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(2, this, 'A')">A) Sayısal</button>
+                    <button class="option-btn" onclick="selectAnswer(2, this, 'B')">B) Karakter Dizisi</button>
+                    <button class="option-btn" onclick="selectAnswer(2, this, 'C')">C) Özel</button>
+                    <button class="option-btn" onclick="selectAnswer(2, this, 'D')">D) Mantıksal</button>
+                </div>
+                <div class="feedback-msg" id="fb2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question" id="q3">
+                <div class="q-text">
+                    <span class="q-num">3</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">"Bir haftadaki gün sayısı" sabit midir yoksa değişken midir?</span>
+                        <span class="q-ar">هل "عدد أيام الأسبوع" ثابت أم متغير؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(3, this, 'A')">A) Değişken / متغير</button>
+                    <button class="option-btn" onclick="selectAnswer(3, this, 'B')">B) Sabit / ثابت</button>
+                    <button class="option-btn" onclick="selectAnswer(3, this, 'C')">C) Hem sabit hem değişken</button>
+                    <button class="option-btn" onclick="selectAnswer(3, this, 'D')">D) Hiçbiri / لا شيء</button>
+                </div>
+                <div class="feedback-msg" id="fb3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-question" id="q4">
+                <div class="q-text">
+                    <span class="q-num">4</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">"Yazılıdan aldığımız not" sabit midir yoksa değişken midir?</span>
+                        <span class="q-ar">هل "درجة الامتحان التي نحصل عليها" ثابت أم متغير؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(4, this, 'A')">A) Sabit / ثابت</button>
+                    <button class="option-btn" onclick="selectAnswer(4, this, 'B')">B) Değişken / متغير</button>
+                    <button class="option-btn" onclick="selectAnswer(4, this, 'C')">C) Özel Veri</button>
+                    <button class="option-btn" onclick="selectAnswer(4, this, 'D')">D) Mantıksal</button>
+                </div>
+                <div class="feedback-msg" id="fb4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-question" id="q5">
+                <div class="q-text">
+                    <span class="q-num">5</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">"İşletim sistemi oluşturmak" basit problem midir yoksa karmaşık problem midir?</span>
+                        <span class="q-ar">هل "إنشاء نظام تشغيل" مشكلة بسيطة أم معقدة؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(5, this, 'A')">A) Basit Problem</button>
+                    <button class="option-btn" onclick="selectAnswer(5, this, 'B')">B) Karmaşık Problem</button>
+                    <button class="option-btn" onclick="selectAnswer(5, this, 'C')">C) Alt Problem</button>
+                    <button class="option-btn" onclick="selectAnswer(5, this, 'D')">D) Hiçbiri</button>
+                </div>
+                <div class="feedback-msg" id="fb5"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-question" id="q6">
+                <div class="q-text">
+                    <span class="q-num">6</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">Eğer fonksiyonu aşağıdakilerden hangisini yapar?</span>
+                        <span class="q-ar">ماذا تفعل دالة "إذا" (Eğer)؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(6, this, 'A')">A) İki sayıyı toplar</button>
+                    <button class="option-btn" onclick="selectAnswer(6, this, 'B')">B) Bir koşulu kontrol eder</button>
+                    <button class="option-btn" onclick="selectAnswer(6, this, 'C')">C) Veri toplar</button>
+                    <button class="option-btn" onclick="selectAnswer(6, this, 'D')">D) Algoritmaya başlar</button>
+                </div>
+                <div class="feedback-msg" id="fb6"></div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-question" id="q7">
+                <div class="q-text">
+                    <span class="q-num">7</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">Bir algoritma her zaman hangi adımla başlar?</span>
+                        <span class="q-ar">بأي خطوة تبدأ كل خوارزمية دائماً؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(7, this, 'A')">A) Bitir</button>
+                    <button class="option-btn" onclick="selectAnswer(7, this, 'B')">B) Yazdır</button>
+                    <button class="option-btn" onclick="selectAnswer(7, this, 'C')">C) Başla</button>
+                    <button class="option-btn" onclick="selectAnswer(7, this, 'D')">D) Eğer</button>
+                </div>
+                <div class="feedback-msg" id="fb7"></div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-question" id="q8">
+                <div class="q-text">
+                    <span class="q-num">8</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">yazılı1=40, yazılı2=60 ise ortalama=(40+60)/2=50. "Eğer ortalama&lt;50 ise KALDI yaz değilse GEÇTİ yaz" sonucu nedir?</span>
+                        <span class="q-ar">إذا كانت الدرجة1=40 والدرجة2=60 فالمعدل=50. ما نتيجة "إذا المعدل&lt;50 اطبع رسب وإلا اطبع نجح"؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(8, this, 'A')">A) KALDI / رسب</button>
+                    <button class="option-btn" onclick="selectAnswer(8, this, 'B')">B) GEÇTİ / نجح</button>
+                    <button class="option-btn" onclick="selectAnswer(8, this, 'C')">C) Hata / خطأ</button>
+                    <button class="option-btn" onclick="selectAnswer(8, this, 'D')">D) Belirsiz / غير محدد</button>
+                </div>
+                <div class="feedback-msg" id="fb8"></div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-question" id="q9">
+                <div class="q-text">
+                    <span class="q-num">9</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">Diş fırçalama algoritmasında "Başla" kaçıncı adımdır?</span>
+                        <span class="q-ar">في خوارزمية تنظيف الأسنان، ما ترتيب خطوة "ابدأ"؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(9, this, 'A')">A) 1. adım</button>
+                    <button class="option-btn" onclick="selectAnswer(9, this, 'B')">B) 2. adım</button>
+                    <button class="option-btn" onclick="selectAnswer(9, this, 'C')">C) 3. adım</button>
+                    <button class="option-btn" onclick="selectAnswer(9, this, 'D')">D) Son adım</button>
+                </div>
+                <div class="feedback-msg" id="fb9"></div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-question" id="q10">
+                <div class="q-text">
+                    <span class="q-num">10</span>
+                    <div class="q-text-bilingual">
+                        <span class="q-tr">"Kübra" ifadesi hangi veri türüne örnektir?</span>
+                        <span class="q-ar">ما نوع البيانات "Kübra"؟</span>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectAnswer(10, this, 'A')">A) Karakter</button>
+                    <button class="option-btn" onclick="selectAnswer(10, this, 'B')">B) Sayısal</button>
+                    <button class="option-btn" onclick="selectAnswer(10, this, 'C')">C) Karakter Dizisi</button>
+                    <button class="option-btn" onclick="selectAnswer(10, this, 'D')">D) Mantıksal</button>
+                </div>
+                <div class="feedback-msg" id="fb10"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="score-board" id="scoreBoard">
+        <h3>Sonuç / النتيجة</h3>
+        <div class="score-display" id="scoreDisplay">- <span>/ 10</span></div>
+        <br>
+        <button class="check-btn" onclick="checkAllAnswers()">Cevapları Kontrol Et / تحقق من الإجابات</button>
+        <br>
+        <button class="reset-btn" onclick="resetQuiz()">Tekrar Dene / أعد المحاولة</button>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    <strong>Süleyman Demirel Ortaokulu</strong> | Bilişim Teknolojileri ve Yazılım<br>
+    2. Dönem 1. Yazılı - Sınav Hazırlık Sayfası<br>
+    <span style="opacity: 0.6; font-size: 0.85em;">Başarılar! / بالتوفيق!</span>
+</div>
+
+<script>
+    const correctAnswers = {
+        1: 'B', 2: 'C', 3: 'B', 4: 'B', 5: 'B',
+        6: 'B', 7: 'C', 8: 'B', 9: 'A', 10: 'C'
+    };
+
+    const explanations = {
+        1: { tr: '61 bir sayıdır, bu yüzden Sayısal Veri\'dir.', ar: '61 هو عدد، لذلك هو بيانات رقمية.' },
+        2: { tr: '29 Ekim 1923 bir tarih verisidir, bu yüzden Özel Veri\'dir.', ar: '29 Ekim 1923 هو تاريخ، لذلك هو بيانات خاصة.' },
+        3: { tr: 'Haftada her zaman 7 gün vardır, değişmez. Bu yüzden Sabit\'tir.', ar: 'الأسبوع دائماً 7 أيام ولا يتغير، لذلك هو ثابت.' },
+        4: { tr: 'Her sınavda farklı not alabiliriz, bu yüzden Değişken\'dir.', ar: 'يمكن أن نحصل على درجة مختلفة كل امتحان، لذلك هو متغير.' },
+        5: { tr: 'İşletim sistemi oluşturmak birçok alt probleme sahiptir, Karmaşık Problem\'dir.', ar: 'إنشاء نظام تشغيل له مشكلات فرعية كثيرة، لذلك هو مشكلة معقدة.' },
+        6: { tr: 'Eğer fonksiyonu bir koşulu kontrol eder: doğru ise bir şey yapar, değilse başka şey yapar.', ar: 'دالة "إذا" تتحقق من شرط: إذا صحيح تفعل شيء، وإلا تفعل شيء آخر.' },
+        7: { tr: 'Her algoritma her zaman "Başla" ile başlar.', ar: 'كل خوارزمية تبدأ دائماً بـ "ابدأ".' },
+        8: { tr: 'ortalama=50, 50<50 yanlıştır (eşit, küçük değil), bu yüzden GEÇTİ yazılır.', ar: 'المعدل=50، و50 ليس أصغر من 50 (متساوي)، لذلك يُطبع "نجح".' },
+        9: { tr: '"Başla" her zaman 1. adımdır.', ar: '"ابدأ" هي دائماً الخطوة الأولى.' },
+        10: { tr: '"Kübra" birden fazla karakterden oluşur, bu yüzden Karakter Dizisi\'dir.', ar: '"Kübra" تتكون من أكثر من حرف، لذلك هي سلسلة حرفية.' }
+    };
+
+    const userAnswers = {};
+
+    function selectAnswer(qNum, btn, answer) {
+        const question = document.getElementById('q' + qNum);
+        const buttons = question.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.classList.remove('selected', 'correct-answer', 'wrong-answer'));
+        btn.classList.add('selected');
+        userAnswers[qNum] = answer;
+        const fb = document.getElementById('fb' + qNum);
+        fb.classList.remove('show');
+        question.classList.remove('correct', 'wrong');
+    }
+
+    function checkAllAnswers() {
+        let score = 0;
+        for (let i = 1; i <= 10; i++) {
+            const question = document.getElementById('q' + i);
+            const fb = document.getElementById('fb' + i);
+            const buttons = question.querySelectorAll('.option-btn');
+
+            if (!userAnswers[i]) {
+                fb.textContent = 'Lütfen bir cevap seçin! / الرجاء اختيار إجابة!';
+                fb.className = 'feedback-msg wrong show';
+                question.classList.add('wrong');
+                continue;
+            }
+
+            const isCorrect = userAnswers[i] === correctAnswers[i];
+            buttons.forEach(b => {
+                const letter = b.textContent.charAt(0);
+                b.classList.remove('selected');
+                if (letter === correctAnswers[i]) b.classList.add('correct-answer');
+                else if (letter === userAnswers[i] && !isCorrect) b.classList.add('wrong-answer');
+            });
+
+            if (isCorrect) {
+                score++;
+                fb.innerHTML = '&#10004; Doğru! / صحيح! - ' + explanations[i].tr + ' | ' + explanations[i].ar;
+                fb.className = 'feedback-msg correct show';
+                question.classList.remove('wrong');
+                question.classList.add('correct');
+            } else {
+                fb.innerHTML = '&#10008; Yanlış! / خطأ! - ' + explanations[i].tr + ' | ' + explanations[i].ar;
+                fb.className = 'feedback-msg wrong show';
+                question.classList.remove('correct');
+                question.classList.add('wrong');
+            }
+        }
+
+        const display = document.getElementById('scoreDisplay');
+        display.innerHTML = score + ' <span>/ 10</span>';
+        display.style.color = score === 10 ? '#4ade80' : score >= 7 ? '#fbbf24' : '#f87171';
+        document.getElementById('scoreBoard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetQuiz() {
+        for (let i = 1; i <= 10; i++) {
+            const question = document.getElementById('q' + i);
+            const fb = document.getElementById('fb' + i);
+            question.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected', 'correct-answer', 'wrong-answer'));
+            fb.className = 'feedback-msg';
+            question.classList.remove('correct', 'wrong');
+        }
+        Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+        document.getElementById('scoreDisplay').innerHTML = '- <span>/ 10</span>';
+        document.getElementById('scoreDisplay').style.color = 'white';
+        window.scrollTo({ top: document.getElementById('quiz').offsetTop - 70, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('progressBar').style.width = (winScroll / height) * 100 + '%';
+    });
+
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-bar a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id'); });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
