@@ -141,7 +141,12 @@
         .styled-table tbody tr:hover { background: #f1f5f9; }
         .styled-table tbody tr:nth-child(even) { background: #f8fafc; }
 
-        .tag { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.8em; font-weight: 600; }
+        .tag { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.8em; font-weight: 600; cursor: pointer; transition: all 0.25s; user-select: none; }
+        .tag.hidden-answer { background: #e2e8f0 !important; color: #e2e8f0 !important; border: 2px dashed #94a3b8; min-width: 80px; text-align: center; }
+        .tag.hidden-answer:hover { border-color: #64748b; background: #cbd5e1 !important; }
+        .tag.hidden-answer::after { content: '👆'; position: absolute; font-size: 0.7em; }
+        .tag.revealed { animation: revealPop 0.3s ease; }
+        @keyframes revealPop { 0% { transform: scale(0.8); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         .tag-sayisal { background: #dbeafe; color: #1e40af; }
         .tag-karakter { background: #dcfce7; color: #166534; }
         .tag-karakter-dizisi { background: #fef3c7; color: #92400e; }
@@ -342,11 +347,11 @@
             <table class="styled-table">
                 <thead><tr><th>Soru</th><th>Cevap</th><th>Veri Türü</th></tr></thead>
                 <tbody>
-                    <tr><td>Kaç kilosunuz?</td><td>61</td><td><span class="tag tag-sayisal">Sayısal</span></td></tr>
-                    <tr><td>Ankara'nın üçüncü harfi</td><td>k</td><td><span class="tag tag-karakter">Karakter</span></td></tr>
-                    <tr><td>3 sayısı 5 sayısından küçük müdür?</td><td>Evet</td><td><span class="tag tag-mantiksal">Mantıksal</span></td></tr>
-                    <tr><td>En sevdiğin yemeğin adı nedir?</td><td>Kilis Tava</td><td><span class="tag tag-karakter-dizisi">Karakter Dizisi</span></td></tr>
-                    <tr><td>Cumhuriyet ne zaman ilan edilmiştir?</td><td>29 Ekim 1923</td><td><span class="tag tag-ozel">Özel</span></td></tr>
+                    <tr><td>Kaç kilosunuz?</td><td>61</td><td><span class="tag tag-sayisal hidden-answer" onclick="revealTag(this)">Sayısal</span></td></tr>
+                    <tr><td>Ankara'nın üçüncü harfi</td><td>k</td><td><span class="tag tag-karakter hidden-answer" onclick="revealTag(this)">Karakter</span></td></tr>
+                    <tr><td>3 sayısı 5 sayısından küçük müdür?</td><td>Evet</td><td><span class="tag tag-mantiksal hidden-answer" onclick="revealTag(this)">Mantıksal</span></td></tr>
+                    <tr><td>En sevdiğin yemeğin adı nedir?</td><td>Kilis Tava</td><td><span class="tag tag-karakter-dizisi hidden-answer" onclick="revealTag(this)">Karakter Dizisi</span></td></tr>
+                    <tr><td>Cumhuriyet ne zaman ilan edilmiştir?</td><td>29 Ekim 1923</td><td><span class="tag tag-ozel hidden-answer" onclick="revealTag(this)">Özel</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -380,11 +385,11 @@
             <table class="styled-table">
                 <thead><tr><th>السؤال</th><th>الجواب</th><th>نوع البيانات</th></tr></thead>
                 <tbody>
-                    <tr><td>كم وزنك؟</td><td>61</td><td><span class="tag tag-sayisal">رقمي</span></td></tr>
-                    <tr><td>الحرف الثالث من Ankara</td><td>k</td><td><span class="tag tag-karakter">حرفي</span></td></tr>
-                    <tr><td>هل 3 أصغر من 5؟</td><td>نعم</td><td><span class="tag tag-mantiksal">منطقي</span></td></tr>
-                    <tr><td>أكلتك المفضلة؟</td><td>Kilis Tava</td><td><span class="tag tag-karakter-dizisi">سلسلة حرفية</span></td></tr>
-                    <tr><td>متى أُعلنت الجمهورية؟</td><td>29 Ekim 1923</td><td><span class="tag tag-ozel">خاص</span></td></tr>
+                    <tr><td>كم وزنك؟</td><td>61</td><td><span class="tag tag-sayisal hidden-answer" onclick="revealTag(this)">رقمي</span></td></tr>
+                    <tr><td>الحرف الثالث من Ankara</td><td>k</td><td><span class="tag tag-karakter hidden-answer" onclick="revealTag(this)">حرفي</span></td></tr>
+                    <tr><td>هل 3 أصغر من 5؟</td><td>نعم</td><td><span class="tag tag-mantiksal hidden-answer" onclick="revealTag(this)">منطقي</span></td></tr>
+                    <tr><td>أكلتك المفضلة؟</td><td>Kilis Tava</td><td><span class="tag tag-karakter-dizisi hidden-answer" onclick="revealTag(this)">سلسلة حرفية</span></td></tr>
+                    <tr><td>متى أُعلنت الجمهورية؟</td><td>29 Ekim 1923</td><td><span class="tag tag-ozel hidden-answer" onclick="revealTag(this)">خاص</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -433,11 +438,11 @@
             <table class="styled-table">
                 <thead><tr><th>Nesne</th><th>Nesne Türü</th></tr></thead>
                 <tbody>
-                    <tr><td>Bir haftadaki gün sayısı (7)</td><td><span class="tag tag-sabit">Sabit</span></td></tr>
-                    <tr><td>Sınıflardaki öğrenci sayısı</td><td><span class="tag tag-degisken">Değişken</span></td></tr>
-                    <tr><td>Basketbol oyununda pota sayısı (2)</td><td><span class="tag tag-sabit">Sabit</span></td></tr>
-                    <tr><td>Deniz seviyesindeki suyun kaynama sıcaklığı (100°C)</td><td><span class="tag tag-sabit">Sabit</span></td></tr>
-                    <tr><td>Yazılıdan aldığımız not</td><td><span class="tag tag-degisken">Değişken</span></td></tr>
+                    <tr><td>Bir haftadaki gün sayısı (7)</td><td><span class="tag tag-sabit hidden-answer" onclick="revealTag(this)">Sabit</span></td></tr>
+                    <tr><td>Sınıflardaki öğrenci sayısı</td><td><span class="tag tag-degisken hidden-answer" onclick="revealTag(this)">Değişken</span></td></tr>
+                    <tr><td>Basketbol oyununda pota sayısı (2)</td><td><span class="tag tag-sabit hidden-answer" onclick="revealTag(this)">Sabit</span></td></tr>
+                    <tr><td>Deniz seviyesindeki suyun kaynama sıcaklığı (100°C)</td><td><span class="tag tag-sabit hidden-answer" onclick="revealTag(this)">Sabit</span></td></tr>
+                    <tr><td>Yazılıdan aldığımız not</td><td><span class="tag tag-degisken hidden-answer" onclick="revealTag(this)">Değişken</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -462,11 +467,11 @@
             <table class="styled-table">
                 <thead><tr><th>الكائن</th><th>النوع</th></tr></thead>
                 <tbody>
-                    <tr><td>عدد أيام الأسبوع (7)</td><td><span class="tag tag-sabit">ثابت</span></td></tr>
-                    <tr><td>عدد الطلاب في الصف</td><td><span class="tag tag-degisken">متغير</span></td></tr>
-                    <tr><td>عدد السلال في كرة السلة (2)</td><td><span class="tag tag-sabit">ثابت</span></td></tr>
-                    <tr><td>درجة غليان الماء عند سطح البحر (100°C)</td><td><span class="tag tag-sabit">ثابت</span></td></tr>
-                    <tr><td>الدرجة التي نحصل عليها في الامتحان</td><td><span class="tag tag-degisken">متغير</span></td></tr>
+                    <tr><td>عدد أيام الأسبوع (7)</td><td><span class="tag tag-sabit hidden-answer" onclick="revealTag(this)">ثابت</span></td></tr>
+                    <tr><td>عدد الطلاب في الصف</td><td><span class="tag tag-degisken hidden-answer" onclick="revealTag(this)">متغير</span></td></tr>
+                    <tr><td>عدد السلال في كرة السلة (2)</td><td><span class="tag tag-sabit hidden-answer" onclick="revealTag(this)">ثابت</span></td></tr>
+                    <tr><td>درجة غليان الماء عند سطح البحر (100°C)</td><td><span class="tag tag-sabit hidden-answer" onclick="revealTag(this)">ثابت</span></td></tr>
+                    <tr><td>الدرجة التي نحصل عليها في الامتحان</td><td><span class="tag tag-degisken hidden-answer" onclick="revealTag(this)">متغير</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -518,11 +523,11 @@
             <table class="styled-table">
                 <thead><tr><th>Problem</th><th>Çözüm Sınıfı</th></tr></thead>
                 <tbody>
-                    <tr><td>Araba yıkamak</td><td><span class="tag tag-basit">Basit</span></td></tr>
-                    <tr><td>Kilis Tava hazırlamak</td><td><span class="tag tag-basit">Basit</span></td></tr>
-                    <tr><td>Futbolda dünya kupası şampiyonu olmak</td><td><span class="tag tag-karmasik">Karmaşık</span></td></tr>
-                    <tr><td>Alarm kurmak</td><td><span class="tag tag-basit">Basit</span></td></tr>
-                    <tr><td>İşletim sistemi oluşturmak</td><td><span class="tag tag-karmasik">Karmaşık</span></td></tr>
+                    <tr><td>Araba yıkamak</td><td><span class="tag tag-basit hidden-answer" onclick="revealTag(this)">Basit</span></td></tr>
+                    <tr><td>Kilis Tava hazırlamak</td><td><span class="tag tag-basit hidden-answer" onclick="revealTag(this)">Basit</span></td></tr>
+                    <tr><td>Futbolda dünya kupası şampiyonu olmak</td><td><span class="tag tag-karmasik hidden-answer" onclick="revealTag(this)">Karmaşık</span></td></tr>
+                    <tr><td>Alarm kurmak</td><td><span class="tag tag-basit hidden-answer" onclick="revealTag(this)">Basit</span></td></tr>
+                    <tr><td>İşletim sistemi oluşturmak</td><td><span class="tag tag-karmasik hidden-answer" onclick="revealTag(this)">Karmaşık</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -551,11 +556,11 @@
             <table class="styled-table">
                 <thead><tr><th>المشكلة</th><th>نوع الحل</th></tr></thead>
                 <tbody>
-                    <tr><td>غسل السيارة</td><td><span class="tag tag-basit">بسيطة</span></td></tr>
-                    <tr><td>تحضير كليس تافا</td><td><span class="tag tag-basit">بسيطة</span></td></tr>
-                    <tr><td>الفوز ببطولة كأس العالم</td><td><span class="tag tag-karmasik">معقدة</span></td></tr>
-                    <tr><td>ضبط المنبه</td><td><span class="tag tag-basit">بسيطة</span></td></tr>
-                    <tr><td>إنشاء نظام تشغيل</td><td><span class="tag tag-karmasik">معقدة</span></td></tr>
+                    <tr><td>غسل السيارة</td><td><span class="tag tag-basit hidden-answer" onclick="revealTag(this)">بسيطة</span></td></tr>
+                    <tr><td>تحضير كليس تافا</td><td><span class="tag tag-basit hidden-answer" onclick="revealTag(this)">بسيطة</span></td></tr>
+                    <tr><td>الفوز ببطولة كأس العالم</td><td><span class="tag tag-karmasik hidden-answer" onclick="revealTag(this)">معقدة</span></td></tr>
+                    <tr><td>ضبط المنبه</td><td><span class="tag tag-basit hidden-answer" onclick="revealTag(this)">بسيطة</span></td></tr>
+                    <tr><td>إنشاء نظام تشغيل</td><td><span class="tag tag-karmasik hidden-answer" onclick="revealTag(this)">معقدة</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -1017,6 +1022,16 @@
 </div>
 
 <script>
+    function revealTag(el) {
+        if (el.classList.contains('hidden-answer')) {
+            el.classList.remove('hidden-answer');
+            el.classList.add('revealed');
+        } else {
+            el.classList.add('hidden-answer');
+            el.classList.remove('revealed');
+        }
+    }
+
     const correctAnswers = {
         1: 'B', 2: 'C', 3: 'B', 4: 'B', 5: 'B',
         6: 'B', 7: 'C', 8: 'B', 9: 'A', 10: 'C'
